@@ -38,5 +38,7 @@ module ChicagoTransit
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    config.time_zone = 'Central Time (US & Canada)'
   end
 end

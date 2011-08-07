@@ -1,3 +1,66 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.arrival {
+	display: block;
+	list-style: none;
+	padding: 10px;
+	color: #fff;
+	position: relative;
+	margin-bottom: 1px;
+}
+
+.red {
+	background-color: #C60C30;
+}
+.blue {
+	background-color: #00A1DE;
+}
+.brown {
+	background-color: #62361B;
+}
+.green {
+	background-color: #009B3A;
+}
+.orange {
+	background-color: #F9461C;
+}
+.purple {
+	background-color: #522398;
+}
+.pink {
+	background-color: #E27EA6;
+}
+.yellow {
+	background-color: #F9E300;
+}
+
+.train-info {
+	font-size: 10px;
+	margin: 0px;
+	padding: 0px;
+}
+h3 {
+	margin: 0px;
+	padding: 0px;
+	font-weight: 400;
+	font-size: 24px;
+}
+.time-til {
+	margin: 0px;
+	padding: 0px;
+	font-size: 24px;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}

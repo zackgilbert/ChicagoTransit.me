@@ -16,6 +16,10 @@ Division
 
 <ul>
 <% @arrivals.each do |arrival| %>
-	<li><%= arrival.to_yaml %></li>
+	<li class="arrival <%= train_route(arrival['rt']['$']) %>">
+		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
+		<h3><%= arrival['destNm']['$'] %></h3>
+		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+	</li>
 <% end %>
 </ul>
