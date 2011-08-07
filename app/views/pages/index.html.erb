@@ -1,1 +1,21 @@
-Hello Chicago.
+<h1>Hello Chicago.</h1>
+<p>We'll have more soon.</p>
+
+<p>
+<% if @mapid == '40380' %>
+Clark/Lake
+<% else %>
+<a href="?mapid=40380">Clark/Lake</a>
+<% end %> | 
+<% if @mapid == '40320' %>
+Division
+<% else %>
+<a href="?mapid=40320">Division</a>
+<% end %>
+</p>
+
+<ul>
+<% @arrivals.each do |arrival| %>
+	<li><%= arrival.to_yaml %></li>
+<% end %>
+</ul>

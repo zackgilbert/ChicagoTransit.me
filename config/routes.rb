@@ -1,3 +1,5 @@
 ChicagoTransit::Application.routes.draw do
-   root :to => 'pages#index'
+  get 'test' => 'pages#test'
+  
+  root :to => 'pages#index'
 end
