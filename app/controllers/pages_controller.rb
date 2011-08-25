@@ -4,8 +4,8 @@ class PagesController < ApplicationController
     require 'cobravsmongoose'
     require 'open-uri'
     
-    @mapid = params['mapid']||'40380'    
-    response = open("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=04dec4048adc48b580220bb154ea0014&mapid=" + @mapid).read
+    @station_id = params['station']||'40380'    
+    response = open("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=04dec4048adc48b580220bb154ea0014&mapid=" + @station_id).read
     arrays_of_hashes = CobraVsMongoose.xml_to_hash(response)
     
     @arrivals = arrays_of_hashes['ctatt']['eta']
