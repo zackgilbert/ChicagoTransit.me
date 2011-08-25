@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  stop_id: 
+  direction_id:
+  stop_name: 
+  longitude: 
+  latitude: 
+  station_name: 
+  map_id: 
+  ada: 
+  red: 
+  blue: 
+  green: 
+  brown: 
+  purple: 
+  purple_express: 
+  yellow: 
+  pink: 
+  orange: false
+
+two:
+  stop_id: 
+  direction_id:
+  stop_name: 
+  longitude: 
+  latitude: 
+  station_name: 
+  map_id: 
+  ada: 
+  red: 
+  blue: 
+  green: 
+  brown: 
+  purple: 
+  purple_express: 
+  yellow: 
+  pink: 
+  orange: false
