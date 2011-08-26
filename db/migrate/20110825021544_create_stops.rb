@@ -4,8 +4,8 @@ class CreateStops < ActiveRecord::Migration
       t.integer :cta_id
       t.string :name
       t.string :direction
-      t.string :longitude
-      t.string :latitude
+      t.float :lng
+      t.float :lat
       t.string :station_name
       t.integer :station_cta_id
       t.boolean :ada

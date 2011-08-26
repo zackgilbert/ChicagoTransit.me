@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20110825022920) do
   create_table "stations", :force => true do |t|
     t.integer  "cta_id"
     t.string   "name"
-    t.string   "longitude"
-    t.string   "latitude"
+    t.float    "lng"
+    t.float    "lat"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20110825022920) do
     t.integer  "cta_id"
     t.string   "name"
     t.string   "direction"
-    t.string   "longitude"
-    t.string   "latitude"
+    t.float    "lng"
+    t.float    "lat"
     t.string   "station_name"
     t.integer  "station_cta_id"
     t.boolean  "ada"
