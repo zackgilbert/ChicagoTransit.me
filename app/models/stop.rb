@@ -11,13 +11,13 @@ class Stop < ActiveRecord::Base
     else
       origin_lat, origin_lng = origin.lat, origin.lng
     end
-    origin_lat, origin_lng = deg2rad(origin_lat), deg2rad(origin_lng)
+    origin_lat, origin_lng = Geo.deg2rad(origin_lat), Geo.deg2rad(origin_lng)
     within = *args.first[:within]
     {
       :conditions => %(
         (ACOS(COS(#{origin_lat})*COS(#{origin_lng})*COS(RADIANS(stops.lat))*COS(RADIANS(stops.lng))+
         COS(#{origin_lat})*SIN(#{origin_lng})*COS(RADIANS(stops.lat))*SIN(RADIANS(stops.lng))+
-        SIN(#{origin_lat})*SIN(RADIANS(stops.lat)))*3963) <= #{within}
+        SIN(#{origin_lat})*SIN(RADIANS(stops.lat)))*3963) <= #{within[0]}
       ),
       :select => %( users.*,
         (ACOS(COS(#{origin_lat})*COS(#{origin_lng})*COS(RADIANS(stops.lat))*COS(RADIANS(stops.lng))+
@@ -26,17 +26,5 @@ class Stop < ActiveRecord::Base
       )
     }
   }
-  
-  def self.deg2rad(deg)
-  	(deg * Math::PI / 180)
-  end
-
-  def self.rad2deg(rad)
-  	(rad * 180 / Math::PI)
-  end
-
-  def self.acos(rad)
-  	Math.atan2(Math.sqrt(1 - rad**2), rad)
-  end
   
 end
