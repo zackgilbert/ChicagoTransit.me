@@ -11,8 +11,8 @@
 open("doc/stations.csv") do |stations|  
   stations.read.each_line do |station| 
     if station[0] != '#' 
-      name, cta_id = station.chomp.split(",")
-      Station.find_or_create_by_cta_id(:cta_id => cta_id, :name => name)  
+      name, cta_id, longitude, latitude = station.chomp.split(",")
+      Station.find_or_create_by_cta_id(:cta_id => cta_id, :name => name, :longitude => longitude, :latitude => latitude)  
     end
   end
 end

@@ -3,6 +3,8 @@ class CreateStations < ActiveRecord::Migration
     create_table :stations do |t|
       t.integer :cta_id
       t.string :name
+      t.string :longitude
+      t.string :latitude
 
       t.timestamps
     end

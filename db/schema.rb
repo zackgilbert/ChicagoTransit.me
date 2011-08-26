@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(:version => 20110825022920) do
   create_table "stations", :force => true do |t|
     t.integer  "cta_id"
     t.string   "name"
+    t.string   "longitude"
+    t.string   "latitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
