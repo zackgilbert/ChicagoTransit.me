@@ -1,7 +1,9 @@
 module ApplicationHelper
 
   def arrival_time(time) 
-    time_ago_in_words(Time.zone.parse(time).utc.in_time_zone)
+    time = time_ago_in_words(Time.zone.parse(time).utc.in_time_zone)
+    return "Due" if time == "less than a minute" 
+    time = time.gsub(/([minutes]+)/, 'min')
   end
 
   def train_route(route)
