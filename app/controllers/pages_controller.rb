@@ -15,7 +15,11 @@ class PagesController < ApplicationController
   end
   
   def test
-    
+    #@loc = [41.90721218416667,-87.67032433916665]
+    @lat = params['lat']||41.90721218416667
+    @lng = params['lng']||-87.67032433916665
+    @loc = [@lat,@lng]
+    @stations = Station.near(:origin => @loc, :within => 1).order("distance ASC")
   end
   
 end

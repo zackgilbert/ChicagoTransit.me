@@ -1,1 +1,44 @@
-hi.
+Current Location: <%= @loc %>
+<pre>
+<%= @stations.to_yaml %>
+</pre>
+
+
+<hr/>
+
+<p id="status">finding location...</p>
+
+<script>
+	
+	function success(position) {
+		console.log('success');
+	  var s = document.querySelector('#status');
+
+	  if (s.className == 'success') {
+	    // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
+	    return;
+	  }
+
+	  s.innerHTML = "found you at " + position.coords.latitude + ',' + position.coords.longitude;
+	  s.className = 'success';
+
+	  console.log("location: " + position.coords.latitude + ',' + position.coords.longitude);
+	}
+
+	function error(msg) {
+		console.log('failed');
+	  console.log(msg);
+		console.log(arguments);
+	}
+
+	//$(function() { 
+		console.log('hi');
+		if (navigator.geolocation) {
+			console.log('searching...')
+	  	navigator.geolocation.getCurrentPosition(success, error);
+		} else {
+	  	error('not supported');
+		}
+	//});
+
+</script>
