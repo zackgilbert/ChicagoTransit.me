@@ -1,5 +1,4 @@
 <h1>Hello Chicago.</h1>
-<p>(We'll have more soon.)</p>
 <p>
 	<select onchange="window.location.href='?station='+this.value;">
 	<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
@@ -21,9 +20,11 @@ Division
 <ul>
 <% @arrivals.each do |arrival| %>
 	<li class="arrival <%= train_route(arrival['rt']['$']) %>">
-		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
-		<h3><%= arrival['destNm']['$'] %></h3>
-		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+		<div>
+			<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
+			<h3><%= arrival['destNm']['$'] %></h3>
+			<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+		</div>
 	</li>
 <% end %>
 </ul>

@@ -9,6 +9,9 @@ class PagesController < ApplicationController
     arrays_of_hashes = CobraVsMongoose.xml_to_hash(response)
     
     @arrivals = arrays_of_hashes['ctatt']['eta']
+    
+    @station = Station.find_by_cta_id(@station_id)
+    @title = @station.name
   end
   
   def test
