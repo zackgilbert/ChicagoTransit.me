@@ -16,10 +16,13 @@ class PagesController < ApplicationController
   
   def test
     #@loc = [41.90721218416667,-87.67032433916665]
-    @lat = params['lat'].to_f||41.90721218416667
-    @lng = params['lng'].to_f||-87.67032433916665
+    @lat = 41.90721218416667
+    @lat = params['lat'].to_f if params['lat']
+    @lng = -87.67032433916665
+    @lng = params['lng'].to_f if params['lng']
     @loc = [@lat,@lng]
-    @stations = Station.near(:origin => @loc, :within => 1).order("distance ASC")
+    @radius = params['radius']||0.75
+    @stations = Station.near(:origin => @loc, :within => @radius).order("distance ASC").limit(3)
   end
   
 end

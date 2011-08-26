@@ -1,4 +1,10 @@
-Current Location: <%= @loc %>
+Is Mobile: <%= mobile_device? %><br/>
+Is iPhone: <%= iphone_device? %><br/>
+Is iPad: <%= ipad_device? %><br/>
+<br/>
+Current Location: <%= @loc %><br/>
+First 3 stations within a distance of <%= @radius %> miles:<br/>
+<br/>
 <pre>
 <%= @stations.to_yaml %>
 </pre>
