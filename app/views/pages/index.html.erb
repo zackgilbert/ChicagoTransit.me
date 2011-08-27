@@ -26,6 +26,7 @@ Division
 </p>
 <% end %>
 
+<div id="stations-container">
 <% @stations.each do |station| %>
 <% if @stations.count > 1 %>
 <h3><a href="/stations/<%= station.cta_id %>"><%= station.name %></a></h3>
@@ -45,8 +46,24 @@ Division
 <% end %>
 </ul>
 <% end %>
+</div>
 
 <% if params['debug'] %>
 <hr/>
 <span id="debug">Loc: <%= session[:loc].inspect %> // Radius: <%= @radius %></span>
 <% end %>
+
+<script>
+
+	$(function() {
+		setTimeout(updateArrivals, 1000);
+	})
+	
+	function updateArrivals() {
+		$('#stations-container').load(window.location.pathname + '?uid=' + (new Date()).getTime() + ' #stations-container', function() {
+			setTimeout(updateArrivals, 1000);
+		});
+	}
+
+</script>
+
