@@ -1,4 +1,5 @@
 class StationsController < ApplicationController
+  include ApplicationHelper
 
   def index
     redirect_to('/')
@@ -15,7 +16,18 @@ class StationsController < ApplicationController
       
       respond_to do |format|
         format.html { render 'pages/index' }
-        format.json { render :json => station.arrivals.to_json }
+        format.json { 
+          arrivals = []
+          station.arrivals.each do |arrival|
+            arrivals << { :run_number => arrival['rn']['$'], :train_route => train_route(arrival['rt']['$']), :destination_name => arrival['destNm']['$'], :time_til => arrival_time(arrival['arrT']['$']), :arrival_time => arrival['arrT']['$'] }
+            #<li id="line-<%= arrival['rn']['$'] %>" class="arrival <%= train_route(arrival['rt']['$']) %>">
+          	#		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
+          	#		<h4><%= arrival['destNm']['$'] %></h4>
+          	#		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+          	#</li>
+          end
+          render :json => arrivals.to_json 
+        }
       end
     else
       redirect_to('/')

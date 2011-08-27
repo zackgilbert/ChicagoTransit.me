@@ -1,5 +1,6 @@
 module ApplicationHelper
-
+  include ActionView::Helpers::DateHelper
+  
   def arrival_time(time) 
     time = time_ago_in_words(Time.zone.parse(time).utc.in_time_zone)
     return "Due" if time == "less than a minute" 
@@ -27,5 +28,5 @@ module ApplicationHelper
       route
     end
   end
-
+  #helper_method :arrival_time, :train_route
 end

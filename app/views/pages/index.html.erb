@@ -35,7 +35,7 @@ Division
 
 <ul>
 <% station.arrivals.each do |arrival| %>
-	<li class="arrival <%= train_route(arrival['rt']['$']) %>">
+	<li id="line-<%= arrival['rn']['$'] %>" class="arrival <%= train_route(arrival['rt']['$']) %>">
 		<div>
 			<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
 			<h4><%= arrival['destNm']['$'] %></h4>
