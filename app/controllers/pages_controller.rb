@@ -2,18 +2,25 @@ class PagesController < ApplicationController
 
   def index
     @station_id = false
-    if params['station']
+    # if specific station has been supplied,
+    if params['station'] && params['station'] > "0"
+      # get that station
       @station_id = params['station']
       station = Station.find_by_cta_id(@station_id)
       @stations = [station]
       @title = station.name
     else
+      # clean up empty ?station= query string in url
+      redirect_to('/') if params['station']
+      
+      # get lat/lng values
       lat = 41.90721218416667
       lat = params['lat'].to_f if params['lat']
       lng = -87.67032433916665
       lng = params['lng'].to_f if params['lng']
       @loc = [lat,lng]
       
+      # go through radiuses to find nearest stations
       radii = [0.3,0.4,0.5,0.75,1]
       which = 0
       begin
