@@ -5,7 +5,7 @@
 <% end %>
 
 <p>
-	<select onchange="window.location.href='?station='+this.value;">
+	<select onchange="window.location.href='/station/'+this.value;">
 		<option value="">&nbsp;</option>
 	<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
 	</select>	

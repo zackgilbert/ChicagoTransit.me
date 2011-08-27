@@ -1,11 +1,10 @@
 class PagesController < ApplicationController
 
   def index
-    @station_id = false
+    @station_id = params['station']||false
     # if specific station has been supplied,
-    if params['station'] && params['station'] > "0"
+    if @station_id && @station_id > "0"
       # get that station
-      @station_id = params['station']
       station = Station.find_by_cta_id(@station_id)
       @stations = [station]
       @title = station.name
