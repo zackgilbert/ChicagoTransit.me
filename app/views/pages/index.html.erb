@@ -68,7 +68,7 @@ Division
 	
 	function updateArrivals() {
 		$('#stations-container').load(window.location.pathname + '?uid=' + (new Date()).getTime() + ' #stations-container', function() {
-			setTimeout(updateArrivals, 1000);
+			setTimeout(updateArrivals, 3000);
 		});
 	}
 	
