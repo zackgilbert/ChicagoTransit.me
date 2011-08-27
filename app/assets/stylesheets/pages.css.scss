@@ -415,6 +415,11 @@ ul {
 			margin: auto;
 			position: relative;
 		}
+		
+	li.arrival.empty {
+		background-color: #ccc;
+		color: #666;
+	}
 	
 .red {
 	background-color: #C60C30;

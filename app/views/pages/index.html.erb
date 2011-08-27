@@ -44,6 +44,11 @@ Division
 		</div>
 	</li>
 <% end %>
+<% if station.arrivals.count <= 0 %>
+	<li class="arrival empty">
+		<div><h4>No Arrivals Found.</h4></div>
+	</li>
+<% end %>
 </ul>
 <% end %>
 </div>
