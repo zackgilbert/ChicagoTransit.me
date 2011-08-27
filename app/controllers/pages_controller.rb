@@ -2,11 +2,11 @@ class PagesController < ApplicationController
 
   def index
     # clear out any location stored in the session
-    if params['clear']
-      session[:loc] = nil
-      redirect_to('/')
-      return
-    end
+    #if params['clear']
+    #  session[:loc] = nil
+    #  redirect_to('/')
+    #  return
+    #end
     
     # if we've been passed coordinates, store them in a session
     if params['lat'] && params['lng']
