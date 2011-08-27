@@ -1,0 +1,41 @@
+<h1>Hello Chicago.</h1>
+
+<% if mobile_device? %>
+<p id="locating">
+	One sec while we locate you...
+</p>
+<% end %>
+
+<p>
+	<select onchange="window.location.href='/station/'+this.value;">
+		<option value=""><%= mobile_device? ? "or select a station" : "Select a station" %></option>
+	<%= options_from_collection_for_select(Station.all, :cta_id, :name) %>
+	</select>	
+</p>
+
+<% if mobile_device? && session[:loc].nil? %>
+<script>
+	
+	function success(position) {
+		//console.log('success');
+		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
+	}
+
+	function error(msg) {
+		console.log('failed');
+	  console.log(msg);
+		console.log(arguments);
+	}
+
+	$(function() { 
+		//console.log('hi');
+		if (navigator.geolocation) {
+			//console.log('searching...')
+	  	navigator.geolocation.getCurrentPosition(success, error);
+		} else {
+	  	error('not supported');
+		}
+	});
+
+</script>
+<% end %>
