@@ -197,7 +197,7 @@ a:hover { color: #666; text-decoration: underline; }
 	.button {
 		float: right;
 		
-	  cursor: default;
+	  cursor: pointer;
 	  -webkit-font-smoothing: antialiased;
 	  -webkit-appearance: none;
 	  -moz-border-radius: 4px;
@@ -288,6 +288,11 @@ a:hover { color: #666; text-decoration: underline; }
 	  -ms-border-radius: 3px;
 	  -khtml-border-radius: 3px;
 	  border-radius: 3px;
+	}
+	
+	.button:hover,.button:active,.button:visited {
+		color: #fff;
+		text-decoration: none;
 	}
 	
 	.button:not(:active):hover {
