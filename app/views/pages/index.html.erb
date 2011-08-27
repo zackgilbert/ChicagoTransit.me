@@ -5,7 +5,7 @@
 <% end %>
 
 <p>
-	<select onchange="window.location.href='/station/'+this.value;">
+	<select onchange="window.location.href='/stations/'+this.value;">
 		<option value="">&nbsp;</option>
 	<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
 	</select>	
@@ -16,19 +16,19 @@
 <% if @station_id == '40380' %>
 Clark/Lake
 <% else %>
-<a href="?station=40380">Clark/Lake</a>
+<a href="/stations/40380">Clark/Lake</a>
 <% end %> | 
 <% if @station_id == '40320' %>
 Division
 <% else %>
-<a href="?station=40320">Division</a>
+<a href="/stations/40320">Division</a>
 <% end %>
 </p>
 <% end %>
 
 <% @stations.each do |station| %>
 <% if @stations.count > 1 %>
-<h3><a href="?station=<%= station.cta_id %>"><%= station.name %></a></h3>
+<h3><a href="/stations/<%= station.cta_id %>"><%= station.name %></a></h3>
 <% else %>
 <h3><%= station.name %></h3>
 <% end %>

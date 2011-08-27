@@ -16,16 +16,9 @@ class PagesController < ApplicationController
       return
     end
     
-    @station_id = params['station']||false
-    # if specific station has been supplied,
-    if @station_id && @station_id > "0"
-      # get that station
-      station = Station.find_by_cta_id(@station_id)
-      @stations = [station]
-      @title = station.name
-    elsif session[:loc]
+    if session[:loc]
       # clean up empty ?station= query string in url
-      redirect_to('/') if params['station']
+      #redirect_to('/') if params['station']
       
       # go through radiuses to find nearest stations
       radii = [0.3,0.4,0.5,0.75,1]
