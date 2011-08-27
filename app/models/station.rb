@@ -27,4 +27,20 @@ class Station < ActiveRecord::Base
     }
   }
   
+  def arrivals
+    require 'cobravsmongoose'
+    require 'open-uri'
+    
+    begin
+      response = open("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=04dec4048adc48b580220bb154ea0014&mapid=" + self.cta_id.to_s).read
+      arrays_of_hashes = CobraVsMongoose.xml_to_hash(response)
+      
+      return [arrays_of_hashes['ctatt']['eta']] if arrays_of_hashes['ctatt']['eta'][0].nil?
+      
+      arrays_of_hashes['ctatt']['eta']
+    rescue
+      []
+    end
+  end
+    
 end

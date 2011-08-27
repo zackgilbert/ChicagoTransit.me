@@ -1,9 +1,9 @@
-Is Mobile: <%= mobile_device? %><br/>
 Is iPhone: <%= iphone_device? %><br/>
 Is iPad: <%= ipad_device? %><br/>
+Is Mobile: <%= mobile_device? %><br/>
 <br/>
 Current Location: <%= @loc %><br/>
-First 3 stations within a distance of <%= @radius %> miles:<br/>
+Returning first <%= @stations.count %> stations within a distance of <%= @radius %> miles:<br/>
 <br/>
 <pre>
 <%= @stations.to_yaml %>
@@ -11,6 +11,7 @@ First 3 stations within a distance of <%= @radius %> miles:<br/>
 
 
 <hr/>
+<% if mobile_device? %>
 
 <p id="status">finding location...</p>
 
@@ -48,3 +49,8 @@ First 3 stations within a distance of <%= @radius %> miles:<br/>
 	//});
 
 </script>
+<% else %>
+
+<p id="status">Location tracking turned off.</p>
+
+<% end %>

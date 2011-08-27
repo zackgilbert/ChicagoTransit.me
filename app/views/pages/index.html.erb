@@ -1,9 +1,16 @@
+<% if @station_id %>
+<h1><a href="/">Hello Chicago.</h1>
+<% else %>
 <h1>Hello Chicago.</h1>
+<% end %>
+
 <p>
 	<select onchange="window.location.href='?station='+this.value;">
+		<option value="">&nbsp;</option>
 	<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
 	</select>	
 </p>
+<% if params['zack'] %>
 <p>
 	Faves: 
 <% if @station_id == '40380' %>
@@ -17,18 +24,32 @@ Division
 <a href="?station=40320">Division</a>
 <% end %>
 </p>
+<% end %>
+
+<% @stations.each do |station| %>
+<% if @stations.count > 1 %>
+<h3><a href="?station=<%= station.cta_id %>"><%= station.name %></a></h3>
+<% else %>
+<h3><%= station.name %></h3>
+<% end %>
 
 <ul>
-<% @arrivals.each do |arrival| %>
+<% station.arrivals.each do |arrival| %>
 	<li class="arrival <%= train_route(arrival['rt']['$']) %>">
 		<div>
 			<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
-			<h3><%= arrival['destNm']['$'] %></h3>
+			<h4><%= arrival['destNm']['$'] %></h4>
 			<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
 		</div>
 	</li>
 <% end %>
 </ul>
+<% end %>
+
+<% if params['debug'] %>
+<hr/>
+<span id="debug">Loc: <%= @loc.inspect %> // Radius: <%= @radius %></span>
+<% end %>
 
 <!--<hr/>
 

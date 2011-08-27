@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
   
   def ipad_device?
     if session[:ipad_param]
-      session[:ipad_param] == "1"
+      session[:ipad_param] == "true" || session[:ipad_param] == "1"
+    elsif session[:ipad_param] == "false"
+      session[:ipad_param] = nil
+      false
     else
       request.user_agent =~ /iPad/
     end
@@ -15,27 +18,35 @@ class ApplicationController < ActionController::Base
   
   def iphone_device?
     if session[:iphone_param]
-      session[:iphone_param] == "1"
+      session[:iphone_param] == "true" || session[:iphone_param] == "1"
+    elsif session[:iphone_param] == "false"
+      session[:iphone_param] = nil
+      false
     else
       request.user_agent =~ /iPhone/
     end
   end
 
   def mobile_device?
+    return true if iphone_device? || ipad_device?
+    
     if session[:mobile_param]
-      session[:mobile_param] == "1"
+      session[:mobile_param] == "true" || session[:mobile_param] == "1"
+    elsif session[:mobile_param] == "false"
+      session[:mobile_param] = nil
+      false
     else
       request.user_agent =~ /Mobile|webOS/
     end
   end
-  helper_method :ipad_device?, :iphone_device?, :mobile_device?
+  helper_method :iphone_device?, :ipad_device?, :mobile_device?
 
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
-    request.format = :mobile if mobile_device?
+    #request.format = :mobile if mobile_device?
     session[:ipad_param] = params[:ipad] if params[:ipad]
-    request.format = :ipad if ipad_device?
+    #request.format = :ipad if ipad_device?
     session[:iphone_param] = params[:iphone] if params[:iphone]
-    request.format = :iphone if iphone_device?
+    #request.format = :iphone if iphone_device?
   end
 end
