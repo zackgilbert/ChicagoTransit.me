@@ -10,8 +10,16 @@ class StationsController < ApplicationController
     # if specific station has been supplied,
     if @station_id && @station_id > "0"
       # get that station
-      station = Station.find_by_cta_id(@station_id)
-      @stations = [station]
+      #station = Station.find_by_cta_id(@station_id)
+      #@stations = [station]
+      if get_distance
+        @stations = Station.near(:origin => get_distance, :within => 100, :cta_id => @station_id).order('distance ASC').limit(1)
+        station = @stations[0]
+      else
+        station = Station.find_by_cta_id(@station_id)
+        @stations = [station]
+      end
+      
       @title = station.name
       
       respond_to do |format|

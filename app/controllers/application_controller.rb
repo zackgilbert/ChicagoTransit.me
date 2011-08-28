@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   
   before_filter :prepare_for_mobile
 
+  def get_distance
+    if session[:debug]
+      return [41.90721218416667,-87.67032433916665]
+    elsif session[:loc]
+      return session[:loc] 
+    end
+    
+    false
+  end
+  helper_method :get_distance
+
   private
   
   def ipad_device?

@@ -13,11 +13,12 @@ class Station < ActiveRecord::Base
     end
     origin_lat, origin_lng = Geo.deg2rad(origin_lat), Geo.deg2rad(origin_lng)
     within = *args.first[:within]
+    cta_id = args.first[:cta_id] ? ") AND (stations.cta_id = '#{args.first[:cta_id]}'" : ''
     {
       :conditions => %(
         (ACOS(COS(#{origin_lat})*COS(#{origin_lng})*COS(RADIANS(stations.lat))*COS(RADIANS(stations.lng))+
         COS(#{origin_lat})*SIN(#{origin_lng})*COS(RADIANS(stations.lat))*SIN(RADIANS(stations.lng))+
-        SIN(#{origin_lat})*SIN(RADIANS(stations.lat)))*3963) <= #{within[0]}
+        SIN(#{origin_lat})*SIN(RADIANS(stations.lat)))*3963) <= #{within[0]}#{cta_id}
       ),
       :select => %( stations.*,
         (ACOS(COS(#{origin_lat})*COS(#{origin_lng})*COS(RADIANS(stations.lat))*COS(RADIANS(stations.lng))+

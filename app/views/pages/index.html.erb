@@ -51,7 +51,7 @@ Division
 </p>
 <% end %>
 
-<% if params['debug'] %>
+<% if session[:debug] %>
 <hr/>
 <span id="debug">Loc: <%= session[:loc].inspect %> // Radius: <%= @radius %></span>
 <% end %>
@@ -59,7 +59,7 @@ Division
 <script>
 
 	$(function() {
-		setTimeout(updateArrivals, 1000);
+		setTimeout(updateArrivals, 3000);
 	})
 	
 	function updateArrivals() {
@@ -68,7 +68,7 @@ Division
 		});
 	}
 	
-	function success(position) {
+	/*function success(position) {
 		//console.log('success');
 		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
 	}
@@ -89,7 +89,7 @@ Division
 	  	error('not supported');
 		}
 		return false;
-	};
+	};*/
 
 </script>
 
