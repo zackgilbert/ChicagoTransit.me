@@ -1,22 +1,18 @@
 class PagesController < ApplicationController
 
   def index
-    # clear out any location stored in the session
-    #if params['clear']
-    #  session[:loc] = nil
-    #  redirect_to('/')
-    #  return
-    #end
+    # lets set debug flag
     if params['debug']
       session[:debug] = params['debug'] == 'true' ? true : nil
     end
     
     # if we've been passed coordinates, store them in a session
-    if params['lat'] && params['lng']
+    if params['lat'] && params['lng'] && params['accuracy']
       if params['lat'] == 'false'
         session[:loc] = nil
       else
-        #session[:loc] = [params['lat'].to_f,params['lng'].to_f]
+        session[:loc] = [params['lat'].to_f, params['lng'].to_f]
+        session[:accuracy] = params['accuracy'].to_i
         # then clean up the url
         #redirect_to('/')
         #return
@@ -28,7 +24,7 @@ class PagesController < ApplicationController
       #redirect_to('/') if params['station']
       
       # go through radiuses to find nearest stations
-      radii = [0.5,0.75,1]
+      radii = (get_accuracy <= 2500) ? [0.3,0.4,0.5,0.75,1] : [0.5,0.75,1]
       which = 0
       begin
         @radius = radii[which]
