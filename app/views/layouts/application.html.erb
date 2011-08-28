@@ -39,16 +39,18 @@
 	
 	<header>
 		
-		<h1><a href="/">ChicagoTransit.me</a></h1>
+		<div>
+			<h1><a href="/">ChicagoTransit.me</a></h1>
 		
-		<p>
-			<select onchange="window.location.href='/stations/'+this.value;">
-				<option value="">Current Location</option>
-			<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
-			</select>	
-		</p>
+			<p>
+				<select onchange="window.location.href='/stations/'+this.value;">
+					<option value="">Current Location</option>
+					<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
+				</select>	
+			</p>
 		
-		<!--<a href="#" onclick="return relocate();" class="button">Moved?</a>-->
+			<!--<a href="#" onclick="return relocate();" class="button">Moved?</a>-->
+		</div>
 		
 	</header>
 	
