@@ -28,5 +28,9 @@ module ApplicationHelper
       route
     end
   end
-  #helper_method :arrival_time, :train_route
+  
+  def use_distance? 
+    mobile_device?
+  end
+  
 end

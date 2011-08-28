@@ -363,9 +363,13 @@ a:hover { color: #666; text-decoration: underline; }
 	margin: 0px;
 }
 
+#stations-container {
+	margin-bottom: 30px;
+}
+
 h1 {
 	font-size: 3em;
-	margin: 20px 0px;
+	margin: 0px;
 	text-align: center;
 }
 
@@ -389,23 +393,29 @@ p select {
 	/*font-size: 2.0em;*/
 }
 
-h3 {
-	text-align: center;
-	margin: 30px auto 2px;
-	background-color: #666;
-	color: #fff;
-	padding: 10px;
-	font-weight: 400;
-	font-size: 2.6em;
-}
-	h3 a, h3 a:visited, h3 a:active, h3 a:hover {
-		color: #fff;
-	}
-
 ul {
 	margin: 0px;
-	padding: 0px 0px 20px;
+	padding: 0px;
 }
+
+	li.station {
+		display: block;
+		list-style: none;
+		padding: 1em;
+		color: #fff;
+		margin-bottom: 1px;
+		background-color: #666;
+		text-align: center;
+		margin: 2px auto 2px;
+	}
+
+		li.station h3 {
+			font-weight: 400;
+			font-size: 2.6em;
+		}
+			li.station h3 a, h3 a:visited, h3 a:active, h3 a:hover {
+				color: #fff;
+			}
 
 	li.arrival {
 		display: block;
