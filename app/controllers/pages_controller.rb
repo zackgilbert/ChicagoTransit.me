@@ -16,14 +16,14 @@ class PagesController < ApplicationController
       if params['lat'] == 'false'
         session[:loc] = nil
       else
-        session[:loc] = [params['lat'].to_f,params['lng'].to_f]
+        #session[:loc] = [params['lat'].to_f,params['lng'].to_f]
         # then clean up the url
-        redirect_to('/')
-        return
+        #redirect_to('/')
+        #return
       end
     end
     
-    if get_distance
+    if get_distance && params['locate'].nil?
       # clean up empty ?station= query string in url
       #redirect_to('/') if params['station']
       

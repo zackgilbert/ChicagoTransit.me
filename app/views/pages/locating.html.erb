@@ -1,5 +1,5 @@
 
-<% if mobile_device? %>
+<% if mobile_device? || session[:debug] %>
 <p id="locating">
 	One sec while we locate you...
 </p>
@@ -12,12 +12,12 @@
 	</select>	
 </p>
 
-<% if mobile_device? && session[:loc].nil? %>
+<% if mobile_device? || session[:debug] %>
 <script>
 	
 	function success(position) {
 		//console.log('success');
-		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
+		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
 	function error(msg) {
