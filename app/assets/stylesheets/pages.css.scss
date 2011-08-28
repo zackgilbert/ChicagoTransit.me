@@ -363,19 +363,26 @@ a:hover { color: #666; text-decoration: underline; }
 	margin: 0px;
 }
 
-#stations-container {
-	margin-bottom: 30px;
+header {
+	padding: 10px;
+	background-color: #333;
+	color: #fff;
+	position: relative;
 }
 
-h1 {
-	font-size: 3em;
-	margin: 0px;
-	text-align: center;
-}
-
-	h1 a, h1 a:visited, h1 a:active {
-		color: #666;
+	header h1 {
+		font-size: 1em;
+		margin: 0px;
+		font-weight: 400;
+		position: absolute;
 	}
+
+		header h1 a, h1 a:visited, h1 a:active {
+			color: #fff;
+		}
+
+#stations-container {
+}
 	
 p#locating {
 	font-size: 1.4em;
