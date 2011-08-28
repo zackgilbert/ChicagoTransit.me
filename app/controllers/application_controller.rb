@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     false
   end
 
-  def get_distance
+  def get_location
     if session[:debug]
       return [41.90721218416667,-87.67032433916665]
     elsif session[:loc]
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
     false
   end
-  helper_method :get_distance, :get_accuracy
+  helper_method :get_location, :get_accuracy
 
   private
   

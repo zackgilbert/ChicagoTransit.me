@@ -19,7 +19,7 @@ class PagesController < ApplicationController
       end
     end
     
-    if get_distance && params['locate'].nil?
+    if get_location && params['locate'].nil?
       # clean up empty ?station= query string in url
       #redirect_to('/') if params['station']
       
@@ -28,7 +28,7 @@ class PagesController < ApplicationController
       which = 0
       begin
         @radius = radii[which]
-        @stations = Station.near(:origin => get_distance, :within => @radius).order("distance ASC").limit(3)
+        @stations = Station.near(:origin => get_location, :within => @radius).order("distance ASC").limit(3)
         which =+ 1
       end while @stations.count <= 0
     else
