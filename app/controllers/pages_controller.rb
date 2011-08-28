@@ -14,8 +14,8 @@ class PagesController < ApplicationController
         session[:loc] = [params['lat'].to_f, params['lng'].to_f]
         session[:accuracy] = params['accuracy'].to_i
         # then clean up the url
-        #redirect_to('/')
-        #return
+        redirect_to('/')
+        return
       end
     end
     
