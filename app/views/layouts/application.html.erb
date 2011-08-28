@@ -16,8 +16,12 @@
   <meta name="author" content=""/>
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport // device-width -->
+  <% if iphone_device? %>
+  <meta name="viewport" content="width=600"/>
+  <% elsif ipad_device? %>
   <meta name="viewport" content="width=device-width"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <% end %>
+  <!--<meta name="apple-mobile-web-app-capable" content="yes"/>-->
 
   <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="/favicon.ico"/>
