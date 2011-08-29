@@ -50,7 +50,7 @@ Division
 </p>
 <% end %>
 
-<% if use_location? %>
+<% if session[:debug] %>
 <hr/>
 <span id="debug">Session Loc: <%= session[:loc].inspect %> // Session Accuracy: <%= session[:accuracy].inspect %> // Radius: <%= @radius %></span>
 <% end %>
