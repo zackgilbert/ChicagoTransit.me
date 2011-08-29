@@ -29,7 +29,7 @@ module ApplicationHelper
     end
   end
   
-  def use_distance? 
+  def use_location? 
     mobile_device? || session[:debug]
   end
   
