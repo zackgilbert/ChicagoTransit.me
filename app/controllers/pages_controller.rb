@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
 
   def index
+    session[:last_seen] = nil if session[:last_seen] && session[:last_seen] <= 1.hour.ago
+    
     # lets set debug flag
     if params['debug']
       session[:debug] = params['debug'] == 'true' ? true : nil
@@ -35,6 +37,7 @@ class PagesController < ApplicationController
       @locate = true
       render "locating"
     end
+    session[:last_seen] = Time.now
   end
   
   def test
