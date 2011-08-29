@@ -1,10 +1,10 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-	function geoError(msg) {
-		alert("Error: " + msg);
+	function geoError(err) {
+		alert("Error: " + err.message);
 		//console.log('failed');
-	  //console.log(msg);
+	  //console.log(err);
 		//console.log(arguments);
 	}
 
