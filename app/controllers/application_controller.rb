@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
       session[:mobile_param] = nil
       false
     else
-      request.user_agent =~ /Mobile|webOS/
+      request.user_agent =~ /Mobile|webOS|BlackBerry/
     end
   end
   helper_method :iphone_device?, :ipad_device?, :mobile_device?
