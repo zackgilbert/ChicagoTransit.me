@@ -1,7 +1,6 @@
 
 <div id="stations-container">
 <% @stations.each do |station| %>
-
 <ul>
 	<li id="station-<%= station.cta_id %>" class="station">
 		<div>
@@ -60,36 +59,29 @@ Division
 
 	$(function() {
 		setTimeout(updateArrivals, 3000);
+		setTimeout(checkLocationChange, 5000);
 	})
 	
 	function updateArrivals() {
-		$('#stations-container').load(window.location.pathname + '?uid=' + (new Date()).getTime() + ' #stations-container', function() {
+		$('#stations-container').load(window.location.pathname + '?uid=' + (new Date()).getTime() + ' #stations-container ul', function() {
 			setTimeout(updateArrivals, 3000);
 		});
 	}
-
-	/*function success(position) {
-		//console.log('success');
-		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude;
+	
+	function locationChangeSuccess(position) {
+		if ((position.coords.latitude != '<%= session[:loc][0] %>') || (position.coords.longitude != '<%= session[:loc][1] %>')) {
+			$('.geo-location').addClass('active').attr('title', 'Your location has changed. Search for new stations near your new location?');
+		}
+		setTimeout(checkLocationChange, 5000);
+		//window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
-	function error(msg) {
-		alert("Error: " + msg);
-		console.log('failed');
-	  console.log(msg);
-		console.log(arguments);
-	}
-
-	function relocate() {
-		//console.log('hi');
+	function checkLocationChange() {
 		if (navigator.geolocation) {
-			//console.log('searching...')
-	  	navigator.geolocation.getCurrentPosition(success, error);
-		} else {
-	  	error('not supported');
+	  	navigator.geolocation.getCurrentPosition(locationChangeSuccess, geoError);
 		}
 		return false;
-	};*/
+	};
 
 </script>
 
