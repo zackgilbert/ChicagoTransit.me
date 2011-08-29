@@ -23,9 +23,8 @@
 
 	$(function() { 
 		//console.log('hi');
-		if (navigator.geolocation) {
-			//console.log('searching...')
-	  	navigator.geolocation.getCurrentPosition(success, geoError);
+		if (geo_position_js.init()) {
+		  geo_position_js.getCurrentPosition(success, geo_error);
 		} else {
 	  	error('not supported');
 		}

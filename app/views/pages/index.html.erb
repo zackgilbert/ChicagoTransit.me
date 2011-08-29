@@ -71,7 +71,7 @@ Division
 	}
 	
 	<% if false #use_location? %>
-	function locationChangeSuccess(position) {
+	function change_location(position) {
 		if (((position.coords.latitude != <%= session[:loc][0] %>) || (position.coords.longitude != <%= session[:loc][1] %>))) {
 			/*console.log(position.coords.accuracy);
 			console.log(position.coords.latitude);
@@ -86,8 +86,8 @@ Division
 	}
 
 	function checkLocationChange() {
-		if (navigator.geolocation) {
-	  	navigator.geolocation.getCurrentPosition(locationChangeSuccess, geoError);
+		if (geo_position_js.init()) {
+		  geo_position_js.getCurrentPosition(change_location, geo_error);
 		}
 		return false;
 	};
