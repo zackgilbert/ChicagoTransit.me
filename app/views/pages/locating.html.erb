@@ -21,18 +21,11 @@
 		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
-	function error(msg) {
-		alert("Error: " + msg);
-		console.log('failed');
-	  console.log(msg);
-		console.log(arguments);
-	}
-
 	$(function() { 
 		//console.log('hi');
 		if (navigator.geolocation) {
 			//console.log('searching...')
-	  	navigator.geolocation.getCurrentPosition(success, error);
+	  	navigator.geolocation.getCurrentPosition(success, geoError);
 		} else {
 	  	error('not supported');
 		}
