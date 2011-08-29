@@ -44,10 +44,10 @@
 		
 		<div>
 			<h1><a href="/">ChicagoTransit.me</a></h1>
-		
+			<% if !@locate %>
 			<p>
 				<select onchange="window.location.href='/stations/'+this.value;">
-					<option value="">Current Location</option>
+					<option value=""><%= mobile_device? ? "Current Location" : "Select a station" %></option>
 					<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
 				</select>	
 			</p>
@@ -57,6 +57,7 @@
 				<a href="#" onclick="return relocate();" class="geo-location" title="Use Current Location"></a>
 				<% end %>
 			</span>
+			<% end %>
 		</div>
 		
 	</header>

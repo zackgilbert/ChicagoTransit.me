@@ -32,6 +32,7 @@ class PagesController < ApplicationController
         which =+ 1
       end while @stations.count <= 0
     else
+      @locate = true
       render "locating"
     end
   end

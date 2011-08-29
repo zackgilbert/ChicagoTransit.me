@@ -1,18 +1,19 @@
 
-<% if mobile_device? || session[:debug] %>
-<p id="locating">
-	One sec while we locate you...
-</p>
-<% end %>
-
-<p>
+<div id="select-station">
+	
+	<% if use_location? %>
+	<p id="locating">
+		One sec while we locate you...
+	</p>
+	<% end %>
+	
 	<select onchange="window.location.href='/station/'+this.value;">
-		<option value=""><%= mobile_device? ? "or select a station" : "Select a station" %></option>
+		<option value=""><%= use_location? ? "or select a station" : "Select a station" %></option>
 	<%= options_from_collection_for_select(Station.all, :cta_id, :name) %>
 	</select>	
-</p>
+</div>
 
-<% if mobile_device? || session[:debug] %>
+<% if use_location? %>
 <script>
 	
 	function success(position) {
