@@ -59,7 +59,7 @@ Division
 
 	$(function() {
 		setTimeout(updateArrivals, 3000);
-		<% if use_location? %>
+		<% if false #use_location? %>
 		setTimeout(checkLocationChange, 10000);
 		<% end %>
 	})
@@ -70,7 +70,7 @@ Division
 		});
 	}
 	
-	<% if use_location? %>
+	<% if false #use_location? %>
 	function locationChangeSuccess(position) {
 		if (((position.coords.latitude != <%= session[:loc][0] %>) || (position.coords.longitude != <%= session[:loc][1] %>))) {
 			/*console.log(position.coords.accuracy);
