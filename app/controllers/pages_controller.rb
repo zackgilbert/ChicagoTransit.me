@@ -26,7 +26,7 @@ class PagesController < ApplicationController
       #redirect_to('/') if params['station']
       
       # go through radiuses to find nearest stations
-      radii = (get_accuracy <= 2500) ? [0.3,0.4,0.5,0.75,1] : [0.5,0.75,1]
+      radii = (get_accuracy <= 2500) ? [0.4,0.6,0.75,1] : [0.5,0.75,1]
       which = 0
       begin
         @radius = radii[which]
