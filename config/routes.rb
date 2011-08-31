@@ -1,9 +1,11 @@
 ChicagoTransit::Application.routes.draw do
   get 'test' => 'pages#test'
   
-  #match "/station" => redirect("/")
+
   #match 'station/:station', :to => 'pages#index'
-  resources :stations
+  
+  match "/station" => redirect("/")
+  resources :stations, :except => [:index]
   
   root :to => 'pages#index'
 end

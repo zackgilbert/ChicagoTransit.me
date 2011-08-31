@@ -16,15 +16,10 @@ gem 'jquery-rails'
 gem 'cobravsmongoose'
 gem 'json'
 
-# use Sean's code instead
-#gem "geokit-rails3-1beta", "~> 0.3.1.beta1"
 
-#group :production do 
-	gem 'pg'
-#end
-#group :development, :test do
-#	gem 'sqlite3'
-#end
+gem 'pg'
+gem 'dalli'
+
 
 group :test do
   # Pretty printed test output
