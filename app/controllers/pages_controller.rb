@@ -9,17 +9,17 @@ class PagesController < ApplicationController
     # end
     
     # if we've been passed coordinates, store them in a session
-    # if params['lat'] && params['lng'] && params['accuracy']
-    #   if params['lat'] == 'false'
-    #     session[:loc] = nil
-    #   else
-    #     session[:loc] = [params['lat'].to_f, params['lng'].to_f]
-    #     session[:accuracy] = params['accuracy'].to_i
-    #     # then clean up the url
-    #     redirect_to('/')
-    #     return
-    #   end
-    # end
+    if params['lat'] && params['lng'] && params['accuracy']
+      if params['lat'] == 'false'
+        session[:loc] = nil
+      else
+        session[:loc] = [params['lat'].to_f, params['lng'].to_f]
+        session[:accuracy] = params['accuracy'].to_i
+        # then clean up the url
+        redirect_to('/')
+        return
+      end
+    end
     
     if get_location && params['locate'].nil?
       # clean up empty ?station= query string in url
