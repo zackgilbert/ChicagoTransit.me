@@ -2,58 +2,14 @@
 <div id="stations-container">
 <% @stations.each do |station| %>
 <ul>
-	<li id="station-<%= station.cta_id %>" class="station">
-		<div>
-			<h3>
-			<% if @stations.count > 1 %>
-			<a href="/stations/<%= station.cta_id %>"><%= station.name %></a>
-			<% else %>
-			<%= station.name %>
-			<% end %>
-			</h3>
-			<% if use_location? %>
-			<p>(<%= number_with_precision(station.distance, :precision => 2) %> miles away)</p>
-			<% end %>
-		</div>
-	</li>
-<% station.arrivals.each do |arrival| %>
-	<li id="line-<%= arrival['rn']['$'] %>" class="arrival <%= train_route(arrival['rt']['$']) %>">
-		<div>
-			<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
-			<h4><%= arrival['destNm']['$'] %></h4>
-			<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
-		</div>
-	</li>
-<% end %>
-<% if station.arrivals.count <= 0 %>
-	<li class="arrival empty">
-		<div><h4>No Arrivals Found.</h4></div>
-	</li>
-<% end %>
+<%= render :partial => 'shared/station', :object => station %>
+<%= render :partial => 'shared/arrival', :collection => station.arrivals %>
+<%= render :partial => 'shared/no-arrivals' if station.arrivals.count <= 0 %>
 </ul>
 <% end %>
 </div>
 
-<% if params['zack'] %>
-<p>
-	Faves: 
-<% if @station_id == '40380' %>
-Clark/Lake
-<% else %>
-<a href="/stations/40380">Clark/Lake</a>
-<% end %> | 
-<% if @station_id == '40320' %>
-Division
-<% else %>
-<a href="/stations/40320">Division</a>
-<% end %>
-</p>
-<% end %>
-
-<% if session[:debug] %>
-<hr/>
-<span id="debug">Session Loc: <%= session[:loc].inspect %> // Session Accuracy: <%= session[:accuracy].inspect %> // Radius: <%= @radius %></span>
-<% end %>
+<%= render :partial => 'shared/testing' %>
 
 <script>
 
@@ -94,4 +50,3 @@ Division
 	<% end %>
 
 </script>
-

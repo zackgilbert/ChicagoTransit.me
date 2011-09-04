@@ -1,8 +1,8 @@
 class Station < ActiveRecord::Base
   has_many :stops, :primary_key => "cta_id", :foreign_key => "station_cta_id"
   
-  #acts_as_mappable :default_units => :miles,
-  #                   :default_formula => :sphere
+  validates_uniqueness_of :cta_id
+
   
   scope :near, lambda{ |*args|
     origin = *args.first[:origin]

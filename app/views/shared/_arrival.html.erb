@@ -1,0 +1,7 @@
+<li id="line-<%= arrival['rn']['$'] %>" class="arrival <%= train_route(arrival['rt']['$']) %>">
+	<div>
+		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
+		<h4><%= arrival['destNm']['$'] %></h4>
+		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+	</div>
+</li>
