@@ -23,8 +23,9 @@ gem "meta_search",    '>= 1.1.0.pre'
 
 
 group :production do
-	gem 'dalli'				# memcached
-	gem 'kgio'				# boost to dalli
+	gem 'dalli'					# memcached
+	gem 'kgio'					# boost to dalli
+	gem 'newrelic_rpm'	# new relic
 end
 
 group :test do
