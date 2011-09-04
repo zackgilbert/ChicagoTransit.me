@@ -1,9 +1,10 @@
 ChicagoTransit::Application.routes.draw do
-  get 'test' => 'pages#test'
-  
+  ActiveAdmin.routes(self)
 
-  #match 'station/:station', :to => 'pages#index'
-  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  get 'test' => 'pages#test'
+    
   match "/station" => redirect("/")
   resources :stations, :except => [:index]
   

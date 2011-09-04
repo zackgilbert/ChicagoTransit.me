@@ -17,9 +17,10 @@ gem 'cobravsmongoose'
 gem 'json'
 
 
-gem 'pg'
-gem 'dalli'
-
+gem 'pg' 					# postgresql
+gem 'dalli'				# memcached
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
 
 group :test do
   # Pretty printed test output
