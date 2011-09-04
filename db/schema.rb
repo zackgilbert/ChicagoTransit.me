@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904041929) do
+ActiveRecord::Schema.define(:version => 20110904051822) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20110904041929) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "stations", ["cta_id"], :name => "station_id_index", :unique => true
+  add_index "stations", ["name"], :name => "station_name_index", :unique => true
 
   create_table "stops", :force => true do |t|
     t.integer  "cta_id"
