@@ -18,9 +18,14 @@ gem 'json'
 
 
 gem 'pg' 					# postgresql
-gem 'dalli'				# memcached
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
+
+
+group :production do
+	gem 'dalli'				# memcached
+	gem 'kgio'				# boost to dalli
+end
 
 group :test do
   # Pretty printed test output
