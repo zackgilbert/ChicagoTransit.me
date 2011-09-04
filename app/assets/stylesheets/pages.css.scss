@@ -363,62 +363,73 @@ a:hover { color: #666; text-decoration: underline; }
 	margin: 0px;
 	position: relative;
 	overflow: hidden;
-}
 
-header {
-	padding: 10px 0px;
-	background-color: #333;
-	color: #fff;
-	position: fixed;
-	width: 100%;
-	height: 20px;
-	z-index: 10000;
-}
+	header {
+		padding: 10px 0px;
+		background-color: #333;
+		color: #fff;
+		position: fixed;
+		width: 100%;
+		height: 20px;
+		z-index: 10000;
 
-	header div {
-		width: 600px;
-		margin: auto;
-		position: relative;
-	}
+		div {
+			width: 600px;
+			margin: auto;
+			position: relative;
 
-		header h1 {
-			font-size: 1em;
-			margin: 0px;
-			font-weight: 400;
-			position: absolute;
-		}
-
-			header h1 a, h1 a:visited, h1 a:active {
-				color: #fff;
-			}
-			
-		#utilities {
-			position: absolute;
-			right: 0px;
-			top: 0px;
-			height: 18px;
-		}
-			
-			a.geo-location {
-				display: block;
-				background-image: url('/images/location-icons.png');
-				height: 18px;
-				width: 17px;
-				background-position: 0px,0px;
-			}
-
-				a.geo-location:hover {
-					background-position: 55px,0px;
-				}
-
-				a.geo-location.active {
-					background-position: 17px,0px;
+			h1 {
+				font-size: 1em;
+				margin: 0px;
+				font-weight: 400;
+				position: absolute;
+				
+				a, a:visited, a:active {
+					color: #fff;
+					text-decoration: none;
 				}
 				
-					a.geo-location.active:hover {
-						background-position: 36px,0px;
+				a:hover {
+					text-decoration: underline;
+				}
+				
+			}
+				
+			#utilities {
+				position: absolute;
+				right: 0px;
+				top: 0px;
+				height: 18px;
+
+				a.geo-location {
+					display: block;
+					background-image: url('/images/location-icons.png');
+					height: 18px;
+					width: 17px;
+					background-position: 0px,0px;
+
+					:hover {
+						background-position: 55px,0px;
 					}
-					
+
+					.active {
+						background-position: 17px,0px;
+
+						:hover {
+							background-position: 36px,0px;
+						}
+
+					}
+
+				}
+
+			}
+			
+		}
+
+	}
+	
+}
 
 p#locating {
 	font-size: 1.4em;
@@ -445,7 +456,6 @@ p {
 ul {
 	margin: 0px;
 	padding: 0px;
-}
 
 	li.station {
 		display: block;
@@ -456,34 +466,39 @@ ul {
 		background-color: #666;
 		text-align: center;
 		margin: 2px auto 2px;
-	}
-	
-		li.station h3 {
+
+		h3 {
 			font-weight: 400;
 			font-size: 2.6em;
-		}
-			li.station h3 a, h3 a:visited, h3 a:active, h3 a:hover {
+			
+			a, a:visited, a:active, a:hover {
 				color: #fff;
 			}
+			
+		}
 
+	}
+	
 	li.arrival {
 		display: block;
 		list-style: none;
 		padding: 1em;
 		color: #fff;
 		margin-bottom: 1px;
-	}
-
-		li.arrival div {
+	
+		div {
 			width: 600px;
 			margin: auto;
 			position: relative;
 		}
+	}
 		
 	li.arrival.empty {
 		background-color: #ccc;
 		color: #666;
 	}
+
+}
 	
 .red {
 	background-color: #C60C30;
