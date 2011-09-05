@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   
   before_filter :prepare_for_mobile
 
+  def miles_between(loc1, loc2)
+    Geo.rad2deg(Math.acos((Math.sin(Geo.deg2rad(loc1[0])) * Math.sin(Geo.deg2rad(loc2[0]))) + (Math.cos(Geo.deg2rad(loc1[0])) * Math.cos(Geo.deg2rad(loc2[0])) * Math.cos(Geo.deg2rad(loc1[1] - loc2[1]))))) * 60 * 1.1515
+  end
+  
   def get_accuracy
     if session[:debug]
        return 1414

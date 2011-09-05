@@ -41,7 +41,26 @@ class PagesController < ApplicationController
     session[:last_seen] = Time.now
   end
   
-  def test
+  def test    
+    loc1 = [params['lat'].to_f, params['lng'].to_f]#[41.88873100222222, -87.63490998222223]
+    loc2 = [41.885737, -87.630886]    
+    @distance = miles_between(loc1, loc2)
+    
+    #if @distance > 20
+    # looks like you're outside of chicago.
+    
+    # function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2, $unit = 'Mi') {
+    #       $theta = $longitude1 - $longitude2;
+    #       $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta)));
+    #       $distance = acos($distance);
+    #       $distance = rad2deg($distance);
+    #       $distance = $distance * 60 * 1.1515;
+    #       switch($unit) {
+    #         case 'Mi': break;
+    #         case 'Km' : $distance = $distance * 1.609344;
+    #       }
+    #       return (round($distance,2));
+    #     }
     #@loc = [41.90721218416667,-87.67032433916665]
     #lat = 41.90721218416667
     #lat = params['lat'].to_f if params['lat']
