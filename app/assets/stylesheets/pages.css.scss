@@ -466,18 +466,18 @@ ul {
 		text-align: center;
 		margin: 2px auto 2px;
 
-		div {			
+		div {		
+			position: relative;	
 
 			h3 {
 				font-weight: 400;
 				font-size: 2.6em;
 				color: #fff;
-				padding: 10px;
+				padding: 10px 10px 10px;
 
 				a, a:visited, a:active {
-					margin-top: -10px;
-					margin-bottom: -10px;
-					padding: 10px;
+					margin: -10px -10px -10px;
+					padding: 10px 10px 10px;
 					display: block;
 					color: #fff;
 					text-decoration: none;
@@ -486,8 +486,13 @@ ul {
 				a:hover {
 					background-color: #555;
 				}
+				
+				p {
+					font-size: 0.4em;
+					font-weight: 400;
+				}
 
-			}
+			}			
 			
 		}
 		
