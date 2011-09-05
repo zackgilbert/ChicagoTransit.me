@@ -3,37 +3,20 @@ class StationsController < ApplicationController
   
   def show
     @station_id = params[:id]||false
-    # if specific station has been supplied,
-
-    # redirect_to ('/') unless @station_id || @station_id > "0" and return
-  
-    # get that station
-    #station = Station.find_by_cta_id(@station_id)
-    #@stations = [station]
-    if use_location?
-      @stations = Station.near(:origin => get_location, :within => 100, :cta_id => @station_id).order('distance ASC').limit(1)
-      station = @stations[0]
-    else
-      station = Station.find_by_cta_id(@station_id)
-      @stations = [station]
-    end
-    
-    @title = station.name
+    @station = Station.find_by_cta_id(@station_id)
+    @station.user_loc = get_location # HACK -- set user's current location so we know the distance of the user
+    @title = @station.name
     
     respond_to do |format|
-      format.html { render 'pages/index' }
-      format.json { 
-        arrivals = []
-        station.arrivals.each do |arrival|
-          arrivals << { :run_number => arrival['rn']['$'], :train_route => train_route(arrival['rt']['$']), :destination_name => arrival['destNm']['$'], :time_til => arrival_time(arrival['arrT']['$']), :arrival_time => arrival['arrT']['$'] }
-          #<li id="line-<%= arrival['rn']['$'] %>" class="arrival <%= train_route(arrival['rt']['$']) %>">
-        	#		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
-        	#		<h4><%= arrival['destNm']['$'] %></h4>
-        	#		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
-        	#</li>
-        end
-        render :json => arrivals.to_json 
-      }
+      format.html { render :layout => !request.xhr? } # if this is an ajax call, only render page without layout
+      # we don't really need json...
+      #format.json { 
+      #  arrivals = []
+      #  @station.arrivals.each do |arrival|
+      #    arrivals << { :run_number => arrival['rn']['$'], :train_route => train_route(arrival['rt']['$']), :destination_name => arrival['destNm']['$'], :time_til => arrival_time(arrival['arrT']['$']), :arrival_time => arrival['arrT']['$'] }
+      #  end
+      #  render :json => arrivals.to_json 
+      #}
     end
   end
 

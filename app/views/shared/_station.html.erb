@@ -1,14 +1,15 @@
+
 <li id="station-<%= station.cta_id %>" class="station">
 	<div>
 		<h3>
-<% if @stations.count > 1 %>
+<% if @station_id %>
+			<%= station.name %>
+			<% if station.distance %><p>(<%= number_with_precision(station.distance, :precision => 2) %> miles away)</p><% end %>
+<% else %>
 			<a href="/stations/<%= station.cta_id %>">
 				<%= station.name %>
-				<% if use_location? %><p>(<%= number_with_precision(station.distance, :precision => 2) %> miles away)</p><% end %>
+				<% if station.distance %><p>(<%= number_with_precision(station.distance, :precision => 2) %> miles away)</p><% end %>
 			</a>
-<% else %>
-			<%= station.name %>
-			<% if use_location? %><p>(<%= number_with_precision(station.distance, :precision => 2) %> miles away)</p><% end %>
 <% end %>
 		</h3>
 	</div>

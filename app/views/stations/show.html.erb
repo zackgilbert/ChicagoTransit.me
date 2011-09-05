@@ -1,0 +1,10 @@
+
+<div id="stations-container">
+	<ul>
+		<%= render :partial => 'shared/station', :object => @station %>
+		<%= render :partial => 'shared/arrival', :collection => @station.arrivals %>
+		<%= render :partial => 'shared/no-arrivals' if @station.arrivals.count <= 0 %>
+	</ul>
+</div>
+
+<%= render :partial => 'shared/refresh' %>

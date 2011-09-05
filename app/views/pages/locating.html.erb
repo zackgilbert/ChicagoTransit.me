@@ -1,24 +1,19 @@
 
 <div id="select-station">
 	
-	<% if use_location? %>
 	<p id="locating">
 		One sec while we locate you...
 	</p>
-	<% end %>
 	
-	<select onchange="window.location.href='/stations/'+this.value;">
-		<option value=""><%= use_location? ? "or select a station" : "Select a station" %></option>
-	<%= options_from_collection_for_select(Station.all, :cta_id, :name) %>
-	</select>	
+	<%= render :partial => 'shared/station-dropdown', :locals => { :txt => 'or select a station' } %>
+
 </div>
 
-<% if use_location? %>
 <script>
 	
 	function success(position) {
 		//console.log('success');
-		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
+		window.location.href = '/located?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
 	$(function() { 
@@ -31,4 +26,3 @@
 	});
 
 </script>
-<% end %>

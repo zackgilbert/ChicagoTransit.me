@@ -3,14 +3,11 @@
 
 	function geo_error(err) {
 		alert("Error: " + err.message);
-		//console.log('failed');
-	  //console.log(err);
-		//console.log(arguments);
+		console.log(err);
 	}
 
 	function relocate_success(position) {
-		//console.log('success');
-		window.location.href = '/?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
+		window.location.href = '/locate?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
 	function relocate() {
