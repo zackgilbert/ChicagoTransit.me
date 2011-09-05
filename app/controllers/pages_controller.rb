@@ -21,10 +21,10 @@ class PagesController < ApplicationController
     radii.each do |radius|
       # is it more efficient to do this from database
       # or from a method in rails that just goes through each station and filters them by distance?
-      #Rails.cache.fetch("stations-within-#{radius}-of-#{loc1[0]}-#{loc1[1]}", :expires_in => 1.hour) do
-        @stations = Station.near(:origin => loc1, :within => radius).order("d ASC").limit(3)
+      #@stations = Rails.cache.fetch("stations-within-#{radius}-of-#{loc1[0]}-#{loc1[1]}", :expires_in => 1.hour) do
+      #  Station.near(:origin => loc1, :within => radius).order("d ASC").limit(3)
       #end
-      #@stations = Station.near(:origin => get_location, :within => radius).order("d ASC").limit(3)
+      @stations = Station.near(:origin => get_location, :within => radius).order("d ASC").limit(3)
       # if more than 1 station is returned, we are good. no use looking further
       break if @stations.present?
     end
