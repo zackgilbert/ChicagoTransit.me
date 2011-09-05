@@ -28,6 +28,12 @@ class Station < ActiveRecord::Base
     }
   }
   
+  def Station.all_cached
+    Rails.cache.fetch("stations", :expires_in => 1.day) do
+      Station.all
+    end
+  end
+  
   # grab this stations arrival times
   def arrivals
     require 'cobravsmongoose'

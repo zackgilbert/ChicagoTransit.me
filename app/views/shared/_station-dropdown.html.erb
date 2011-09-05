@@ -1,7 +1,9 @@
-
+<% cache("station-dropdown-#{txt}-#{@station_id}") do %> 
 <p>
 	<select onchange="window.location.href='/stations/'+this.value;">
 		<option value=""><%= txt %></option>
-		<%= options_from_collection_for_select(Station.all, :cta_id, :name, @station_id) %>
+		<%= options_from_collection_for_select(Station.all_cached, :cta_id, :name, @station_id) %>
 	</select>	
 </p>
+
+<% end %>
