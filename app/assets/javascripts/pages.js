@@ -2,8 +2,13 @@
 // All this logic will automatically be available in application.js.
 
 	function geo_error(err) {
-		alert("Error: " + err.message);
-		console.log(err);
+		if (err.message == 'User denied Geolocation') {
+			window.location.href = '/error/user-denied'
+		} else {
+			alert("Error: " + err.message);
+			console.log(err);
+			window.location.href = '/error?code=' + err.code + '&msg=' + err.message;
+		}
 	}
 
 	function relocate_success(position) {

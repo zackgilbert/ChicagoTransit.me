@@ -1,0 +1,21 @@
+
+<div id="select-station">
+	
+	<p id="locating">
+		Our apologies, but it appears as though there was a problem trying to locate you.
+	</p>
+	
+	<% if params[:code] %>
+	<pre>
+	<%= params[:code] %>
+	</pre>
+	<% end %>
+	<% if params[:msg] %>
+	<pre>
+	<%= params[:msg] %>
+	</pre>
+	<% end %>
+	
+	<%= render :partial => 'shared/station-dropdown', :locals => { :txt => 'Select a station' } %>
+		
+</div>

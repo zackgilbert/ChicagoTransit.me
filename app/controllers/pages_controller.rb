@@ -4,9 +4,9 @@ class PagesController < ApplicationController
     # if we don't know the user's location...
     if !get_location
       # and they are a mobile device, let's try to find it...
-      render 'locating' and return if mobile_device?
+      redirect_to '/locating' and return if mobile_device?
       # otherwise, just load non-mobile version of loading page.
-      render 'non-mobile' and return
+      redirect_to '/immobile' and return
     end
     
     # otherwise, we know the location, so just load the page as normal.
@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     loc2 = [41.885737, -87.630886]  # location of Clark/Lake
     
     # if user is not in chicago, load that page.
-    render 'out-of-town' and return if Geo.miles_between(loc1, loc2) >= 25 
+    redirect_to '/foreign' and return if Geo.miles_between(loc1, loc2) >= 25 
       
     # go through radiuses to find nearest stations
     radii = (get_accuracy <= 2500) ? [0.31,0.41,0.51,0.76,1.1,5.1] : [0.51,1.1,5.1]
@@ -75,6 +75,22 @@ class PagesController < ApplicationController
     #session[:last_seen] = Time.now
   end
   
+  def error
+    if params[:id]
+      if File.exists?(::Rails.root.to_s+"/app/views/pages/error-#{params[:id]}.html.erb")
+        render "error-#{params[:id]}" and return
+      else
+        redirect_to '/error'
+      end
+    end
+  end
+  
+  def foreign
+  end
+
+  def immobile
+  end  
+  
   def located
     # if we've been passed coordinates, store them in a session
     if params['lat'] && params['lng'] && params['accuracy']
@@ -84,6 +100,9 @@ class PagesController < ApplicationController
       session[:loc] = nil
     end
     redirect_to('/')
+  end
+  
+  def locating
   end
   
   def test    

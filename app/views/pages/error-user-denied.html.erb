@@ -1,0 +1,10 @@
+
+<div id="select-station">
+	
+	<p id="locating">
+		It appears as though you've denied us access to using your location. If you wish to change this, you must go into your <%= mobile_device? ? 'phone' : 'browser' %> settings.
+	</p>
+	
+	<%= render :partial => 'shared/station-dropdown', :locals => { :txt => 'Select a station' } %>
+		
+</div>

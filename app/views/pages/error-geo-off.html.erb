@@ -1,0 +1,10 @@
+
+<div id="select-station">
+	
+	<p id="locating">
+		Looks like your <%= mobile_device? ? 'phone' : 'browser' %> has geolocation turned off. We can not use your location unless you turn this on from your <%= mobile_device? ? 'phone' : 'browser' %>'s settings page.
+	</p>
+	
+	<%= render :partial => 'shared/station-dropdown', :locals => { :txt => 'Select a station' } %>
+		
+</div>
