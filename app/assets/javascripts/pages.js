@@ -4,7 +4,7 @@
 	function geo_error(err) {
 		if (err.message == 'User denied Geolocation') {
 			window.location.href = '/error/user-denied';
-		} else if (err.message == 'Unable to Start') {
+		} else if ((err.message == 'Unable to Start') || (err.message.substr(0, 20) == "The operation couldn")) {
 			window.location.href = '/error/geo-off';
 		} else {
 			alert("Error: " + err.message);
