@@ -7,7 +7,7 @@
 		} else if ((err.message == 'Unable to Start') || (err.message.substr(0, 20) == "The operation couldn")) {
 			window.location.href = '/error/geo-off';
 		} else {
-			alert("Error: " + err.message);
+			alert("Geolocation Error: " + err.message);
 			console.log(err);
 			window.location.href = '/error?msg=' + err.message;
 		}
