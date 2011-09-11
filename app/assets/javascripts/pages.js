@@ -3,11 +3,13 @@
 
 	function geo_error(err) {
 		if (err.message == 'User denied Geolocation') {
-			window.location.href = '/error/user-denied'
+			window.location.href = '/error/user-denied';
+		} else if (err.message == 'Unable to Start') {
+			window.location.href = '/error/geo-off';
 		} else {
 			alert("Error: " + err.message);
 			console.log(err);
-			window.location.href = '/error?code=' + err.code + '&msg=' + err.message;
+			window.location.href = '/error?msg=' + err.message;
 		}
 	}
 
