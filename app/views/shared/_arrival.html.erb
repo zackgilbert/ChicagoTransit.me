@@ -2,6 +2,6 @@
 	<div>
 		<span class="train-info"><%= train_route(arrival['rt']['$']).capitalize %> Line #<%= arrival['rn']['$'] %> to</span>
 		<h4><%= arrival['destNm']['$'] %></h4>
-		<span class="time-til"><%= arrival_time(arrival['arrT']['$']) %></span>
+		<span class="time-til"><%= arrival_time(arrival) %></span>
 	</div>
 </li>

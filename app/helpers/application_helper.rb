@@ -1,10 +1,15 @@
 module ApplicationHelper
   include ActionView::Helpers::DateHelper
   
-  def arrival_time(time) 
-    time = time_ago_in_words(Time.zone.parse(time).utc.in_time_zone)
+  def arrival_time(arrival)
+    # {"staId"=>{"$"=>"40380"}, "stpId"=>{"$"=>"30375"}, "staNm"=>{"$"=>"Clark/Lake"}, "stpDe"=>{"$"=>"Subway service toward O'Hare"}, "rn"=>{"$"=>"124"}, "rt"=>{"$"=>"Blue"}, "destSt"=>{"$"=>"30171"}, "destNm"=>{"$"=>"O'Hare"}, "trDr"=>{"$"=>"1"}, "prdt"=>{"$"=>"20110912 18:40:11"}, "arrT"=>{"$"=>"20110912 18:42:11"}, "isApp"=>{"$"=>"0"}, "isSch"=>{"$"=>"0"}, "isDly"=>{"$"=>"0"}, "isFlt"=>{"$"=>"0"}}
+    return "Approaching" if arrival['isApp']['$'] == "1"
+    return "Delayed" if arrival['isDly']['$'] == "1"
+    
+    time = time_ago_in_words(Time.zone.parse(arrival['arrT']['$']).utc.in_time_zone)
     return "Due" if time == "less than a minute" 
-    time = time.gsub(/([minutes]+)/, 'min')
+    
+    time = time.gsub(/([minutes]+)/, 'min')    
   end
 
   def train_route(route)
