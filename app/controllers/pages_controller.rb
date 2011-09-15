@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       # and they are a mobile device, let's try to find it...
       redirect_to '/locating' and return if mobile_device?
       # otherwise, just load non-mobile version of loading page.
-      redirect_to '/immobile' and return
+      #redirect_to '/immobile' and return
     end
     
     # otherwise, we know the location, so just load the page as normal.
