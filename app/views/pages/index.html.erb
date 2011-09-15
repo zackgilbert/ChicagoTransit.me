@@ -4,7 +4,7 @@
 		<% if @skip >= 3 %>
 		<span id="previous"><a href="/<%= (@skip > 3) ? "?skip=#{@skip-3}" : '' %>" title="Previous 3 Stations">&laquo;</a></span>
 		<% end %>
-		<p>Showing <%= @stations.count < 3 ? '' : 'the first 3 ' %>stations within a <%= number_with_precision(in_miles(get_accuracy), :precision => 2) %> mile radius.</p>
+		<p>Showing <%= @stations.count < 3 ? '' : 'the first 3 ' %>stations within a <%= number_with_precision(@radius, :precision => 2) %> mile radius.</p>
 		<% if @more %>
 		<span id="next"><a href="/?skip=<%= @skip+3 %>" title="Next 3 Stations">&raquo;</a></span>
 		<% end %>

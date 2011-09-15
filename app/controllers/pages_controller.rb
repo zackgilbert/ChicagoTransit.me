@@ -20,16 +20,16 @@ class PagesController < ApplicationController
     
     # go through radiuses to find nearest stations
     miles = in_miles(get_accuracy)
-    radii = [0.81, 1, 1.2, 1.5] #(get_accuracy <= 5000) ? [0.41,0.56,0.76,1] : [0.51,1]
+    radii = [miles*0.81, miles*1, miles*1.2, miles*1.5, 0.51, 1] #(get_accuracy <= 5000) ? [0.41,0.56,0.76,1] : [0.51,1]
     radii.each do |radius|
       # is it more efficient to do this from database
       # or from a method in rails that just goes through each station and filters them by distance?
       #@stations = Rails.cache.fetch("stations-within-#{radius}-of-#{loc1[0]}-#{loc1[1]}", :expires_in => 1.hour) do
       #  Station.near(:origin => loc1, :within => radius).order("d ASC").limit(3)
       #end
-      @stations = Station.near(:origin => get_location, :within => miles*radius).order("d ASC").limit(4).offset(@skip)
+      @stations = Station.near(:origin => get_location, :within => radius).order("d ASC").limit(4).offset(@skip)
       # if more than 1 station is returned, we are good. no use looking further
-      break if @stations.present?
+      break && @radius = radius if @stations.present?
     end
     
     @more = false
