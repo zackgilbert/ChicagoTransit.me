@@ -1,8 +1,26 @@
 <br/><br/><br/>
-<p>
-<%= @distance %>
-</p>
 
-<% if @distance > 20 %>
-Looks like you're from outside of Chicago.
-<% end %>
+<p><%= in_miles(1400) %></p>
+<p><%= in_miles(2200) %></p>
+<p><%= in_miles(5000) %></p>
+<p><%= in_miles(22000) %></p>
+<br/>
+<p><%= in_miles(1400)*0.41 %></p>
+<p><%= in_miles(2200)*0.41 %></p>
+<p><%= in_miles(5000)*0.41 %></p>
+<p><%= in_miles(22000)*0.41 %></p>
+<br/>
+<p><%= in_miles(1400)*0.55 %></p>
+<p><%= in_miles(2200)*0.55 %></p>
+<p><%= in_miles(5000)*0.55 %></p>
+<p><%= in_miles(22000)*0.55 %></p>
+<br/>
+<p><%= in_miles(1400)*0.75 %></p>
+<p><%= in_miles(2200)*0.75 %></p>
+<p><%= in_miles(5000)*0.75 %></p>
+<p><%= in_miles(22000)*0.75 %></p>
+<br/>
+<p><%= in_miles(1400)*1.2 %></p>
+<p><%= in_miles(2200)*1.2 %></p>
+<p><%= in_miles(5000)*1.2 %></p>
+<p><%= in_miles(22000)*1.2 %></p>

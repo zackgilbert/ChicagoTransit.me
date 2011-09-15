@@ -15,18 +15,27 @@ class PagesController < ApplicationController
     
     # if user is not in chicago, load that page.
     redirect_to '/foreign' and return if Geo.miles_between(loc1, loc2) >= 25 
-      
+    
+    @skip = params[:skip].to_i || 0
+    
     # go through radiuses to find nearest stations
-    radii = (get_accuracy <= 2500) ? [0.31,0.41,0.51,0.76,1.1,5.1] : [0.51,1.1,5.1]
+    miles = in_miles(get_accuracy)
+    radii = [0.81, 1, 1.2, 1.5] #(get_accuracy <= 5000) ? [0.41,0.56,0.76,1] : [0.51,1]
     radii.each do |radius|
       # is it more efficient to do this from database
       # or from a method in rails that just goes through each station and filters them by distance?
       #@stations = Rails.cache.fetch("stations-within-#{radius}-of-#{loc1[0]}-#{loc1[1]}", :expires_in => 1.hour) do
       #  Station.near(:origin => loc1, :within => radius).order("d ASC").limit(3)
       #end
-      @stations = Station.near(:origin => get_location, :within => radius).order("d ASC").limit(3)
+      @stations = Station.near(:origin => get_location, :within => miles*radius).order("d ASC").limit(4).offset(@skip)
       # if more than 1 station is returned, we are good. no use looking further
       break if @stations.present?
+    end
+    
+    @more = false
+    if @stations.count == 4
+      @more = true
+      @stations.pop
     end
     
     respond_to do |format|
@@ -106,9 +115,17 @@ class PagesController < ApplicationController
   end
   
   def test    
-    loc1 = [params['lat'].to_f, params['lng'].to_f]#[41.88873100222222, -87.63490998222223]
-    loc2 = [41.885737, -87.630886]    
-    @distance = Geo.miles_between(loc1, loc2)
+    #loc1 = [params['lat'].to_f, params['lng'].to_f]#[41.88873100222222, -87.63490998222223]
+    #loc2 = [41.885737, -87.630886]    
+    #@distance = Geo.miles_between(loc1, loc2)
+    accuracy = get_accuracy
+    miles = in_miles(accuracy)
+    puts miles
+    #radii = (accuracy <= 5000) ? [0.41,0.56,0.76,1] : [0.51,1]
+    radii = [0.81, 1, 1.2, 1.5] #(get_accuracy <= 5000) ? [0.41,0.56,0.76,1] : [0.51,1]
+    radii.each do |radius|
+      puts "#{radius} - #{miles*radius}"
+    end
     
     #if @distance > 20
     # looks like you're outside of chicago.

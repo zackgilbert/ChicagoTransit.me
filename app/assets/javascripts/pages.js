@@ -29,5 +29,6 @@
 	
 	$(function() {
 		$('a.geo-location').tipsy({fade: true, gravity: 'e'});
+		$('#helper a').tipsy({fade: true, gravity: 'n'});
 	});
 	

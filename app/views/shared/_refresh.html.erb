@@ -6,7 +6,7 @@
 	})
 	
 	function updateArrivals() {
-		$('#stations-container').load(window.location.pathname + '?uid=' + (new Date()).getTime() + ' #stations-container ul', function() {
+		$('#stations-container').load(window.location.pathname + '?<%= (@skip.present? && @skip >= 3) ? "skip=#{@skip}&" : "" %>uid=' + (new Date()).getTime() + ' #stations-container ul', function() {
 			setTimeout(updateArrivals, 3000);
 		});
 	}

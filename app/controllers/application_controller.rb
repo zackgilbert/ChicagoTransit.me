@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
     false
   end
   
-  helper_method :get_location, :get_accuracy
+  def in_miles(meters)
+    meters.to_f*0.000621371192
+  end
+  
+  helper_method :get_location, :get_accuracy, :in_miles
 
   private
   
