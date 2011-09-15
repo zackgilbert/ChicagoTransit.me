@@ -5,7 +5,7 @@
 		<span id="previous"><a href="/<%= (@skip > 3) ? "?skip=#{@skip-3}" : '' %>" title="Previous 3 Stations">&laquo;</a></span>
 		<% end %>
 		<p>Showing 
-		<% if @more %>
+		<% if @more || @skip >= 3 %>
 			<% if @skip < 1 %>
 				the first 3 stations
 			<% else %>
