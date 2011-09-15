@@ -19,7 +19,12 @@
 		<%= render :partial => 'shared/no-arrivals' if station.arrivals.count <= 0 %>
 	</ul>
 <% end %>
+<% if @stations.count < 1 %>
+	<p id="locating"><br/>Doesn't look like there are any stations nearby.<br/><br/>Try selecting one from the above dropdown menu.</p>
+<% end %>
 </div>
 
+<% if @stations.present? %>
 <% #render :partial => 'shared/testing' %>
 <%= render :partial => 'shared/refresh' %>
+<% end %>
