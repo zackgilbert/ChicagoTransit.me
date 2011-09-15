@@ -14,7 +14,7 @@
 	}
 
 	function relocate_success(position) {
-		window.location.href = '/locate?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
+		window.location.href = '/located?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&accuracy=' + position.coords.accuracy;
 	}
 
 	function relocate() {
