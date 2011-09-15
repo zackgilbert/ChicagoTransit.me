@@ -6,7 +6,11 @@
 		<% end %>
 		<p>Showing 
 		<% if @more %>
-		<%= @skip < 1 ? 'the first 3 stations' : "stations #{@skip} - #{@skip+@stations.count}" %>
+			<% if @skip < 1 %>
+				the first 3 stations
+			<% else %>
+			  stations <%= @skip+1 %> - <%= @skip+@stations.count %>
+			<% end %>
 		<% else %>
 		stations
 		<% end %>
