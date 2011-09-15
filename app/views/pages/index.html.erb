@@ -9,7 +9,7 @@
 			<% if @skip < 1 %>
 				the first 3 stations
 			<% else %>
-			  stations <%= @skip+1 %> - <%= @skip+@stations.count %>
+			  stations <%= @skip+1 %> - <%= @skip+(@stations.count > 3 ? 3 : @stations.count) %>
 			<% end %>
 		<% else %>
 		stations
