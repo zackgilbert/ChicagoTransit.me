@@ -29,7 +29,7 @@ class PagesController < ApplicationController
       #end
       @stations = Station.near(:origin => get_location, :within => radius).order("d ASC").limit(4).offset(@skip)
       # if more than 1 station is returned, we are good. no use looking further
-      break && @radius = radius if @stations.present?
+      (@radius = radius) && break if @stations.present?
     end
     
     @more = false
