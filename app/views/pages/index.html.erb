@@ -1,23 +1,19 @@
 
 <section id="helper">
 	<div>
-		<% if @skip >= 3 %>
-		<span id="previous"><a href="/<%= (@skip > 3) ? "?skip=#{@skip-3}" : '' %>" title="Previous 3 Stations">&laquo;</a></span>
-		<% end %>
-		<p>Showing 
-		<% if @more || @skip >= 3 %>
-			<% if @skip < 1 %>
+		<p>
+			Showing 
+			<% if @more || @skip >= 3 %>
+				<% if @skip < 1 %>
 				the first 3 stations
-			<% else %>
+				<% else %>
 			  stations <%= @skip+1 %> - <%= @skip+(@stations.count > 3 ? 3 : @stations.count) %>
+				<% end %>
+			<% else %>
+			stations
 			<% end %>
-		<% else %>
-		stations
-		<% end %>
-		 within a <%= number_with_precision(@radius, :precision => 2) %> mile radius.</p>
-		<% if @more %>
-		<span id="next"><a href="/?skip=<%= @skip+3 %>" title="Next 3 Stations">&raquo;</a></span>
-		<% end %>
+			within a <%= number_with_precision(@radius, :precision => 2) %> mile radius.
+		</p>
 	</div>
 </section>
 
@@ -33,6 +29,21 @@
 	<p id="locating"><br/>Doesn't look like there are any stations nearby.<br/><br/>Try selecting one from the above dropdown menu.</p>
 <% end %>
 </div>
+
+<section id="pagination">
+	<div>
+		<span id="previous">
+		<% if @skip >= 3 %>
+			<a href="/<%= (@skip > 3) ? "?skip=#{@skip-3}" : '' %>" title="Previous 3 Stations">&laquo;</a>
+		<% end %>
+		</span>
+		<span id="next">
+		<% if @more %>
+			<a href="/?skip=<%= @skip+3 %>" title="Next 3 Stations">&raquo;</a>
+		<% end %>
+		</span>
+	</div>
+</section>
 
 <% if @stations.present? %>
 <% #render :partial => 'shared/testing' %>
