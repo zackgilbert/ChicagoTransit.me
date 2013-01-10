@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.10'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # Asset template engines
-gem "haml" 
+gem "haml"
 gem 'sass-rails', "~> 3.1.0"
 gem 'coffee-script'
 gem 'uglifier'
@@ -17,15 +17,15 @@ gem 'cobravsmongoose'
 gem 'json'
 
 
-gem 'pg' 					# postgresql
+gem 'pg'          # postgresql
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 
 
 group :production do
-	gem 'dalli'					# memcached
-	gem 'kgio'					# boost to dalli
-	gem 'newrelic_rpm'	# new relic
+  gem 'dalli'         # memcached
+  gem 'kgio'          # boost to dalli
+  gem 'newrelic_rpm'  # new relic
 end
 
 group :test do
